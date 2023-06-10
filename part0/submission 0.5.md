@@ -1,4 +1,4 @@
-Diagram depicting chains of events caused by a note submission.
+Diagram depicting chains of events caused by a note submission on a Single Page APplication.
 
 ```mermaid
     sequenceDiagram
@@ -27,9 +27,8 @@ Diagram depicting chains of events caused by a note submission.
     server-->>browser: [{ "content": "HTML is easy", "date": "2023-1-1" }, ... ]
     deactivate server
 
-    Note right of browser: The browser executes the callback function that redraws the notes section
+    Note right of browser: The browser executes the callback function that renders the notes section
     
-    activate browser
-    
+    rect rgb(191, 223, 255)
     Note right of browser: Browser listens for a form submission event.
 ```
