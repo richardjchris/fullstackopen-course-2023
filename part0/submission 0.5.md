@@ -1,4 +1,4 @@
-Diagram depicting chains of events caused by loading a Single Page APplication.
+Diagram depicting chains of events caused by loading a Single Page Application.
 
 ```mermaid
     sequenceDiagram
