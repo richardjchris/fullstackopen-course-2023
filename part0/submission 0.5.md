@@ -29,7 +29,6 @@ Diagram depicting chains of events caused by loading a Single Page Application.
 
     Note right of browser: The browser executes the callback function that renders the notes section
     
-    rect rgb(191, 223, 255)
-    Note right of browser: Browser listens for a form submission event.
-    end
+    Note right of browser: The browser starts executing the JavaScript code that listens for form submission event
+    
 ```
