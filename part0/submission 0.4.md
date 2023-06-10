@@ -9,7 +9,7 @@ Diagram depicting chains of events caused by a note submission.
 
     browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note
     activate server
-    server-->>browser: 302 found
+    server-->>browser: Redirect request: 302 found
     deactivate server
     
     Note right of browser: The browser submits a request to reload the page with the new note
