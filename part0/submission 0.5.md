@@ -31,4 +31,5 @@ Diagram depicting chains of events caused by a note submission on a Single Page 
     
     rect rgb(191, 223, 255)
     Note right of browser: Browser listens for a form submission event.
+    end
 ```
