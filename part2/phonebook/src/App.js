@@ -1,15 +1,18 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import personsServices from './services/persons.js'
 
-const App = () => {
-  const [persons, setPersons] = useState([
-    { name: "Arto Hellas", number: "040-123456", id: 1 },
-    { name: "Ada Lovelace", number: "39-44-5323523", id: 2 },
-    { name: "Dan Abramov", number: "12-43-234345", id: 3 },
-    { name: "Mary Poppendieck", number: "39-23-6423122", id: 4 },
-  ])
+const App = () =>  {
+  const [persons, setPersons] = useState([])
   const [newName, setNewName] = useState("")
   const [newNumber, setNewNumber] = useState("")
   const [filter, setFilter] = useState("")
+
+  useEffect(() => {
+      personsServices.getAll()
+        .then(response => {
+          setPersons(response.data)
+      })
+    }, [])
 
   const setPerson = (event) => {
     event.preventDefault()
@@ -21,10 +24,20 @@ const App = () => {
       : alert(`${newName} is already added to phonebook`)
 
     if (newPerson) {
-      setPersons(persons.concat(newPerson))
+      personsServices.create(newPerson)
+        .then(response => {
+          setPersons(persons.concat(response.data))
+          setNewName('')
+        })
     } else {
       return false
     }
+  }
+
+  const handleRemovePerson = (event) => {
+    event.preventDefault()
+
+    console.log("ey")
   }
 
   const handleNameChange = (event) => {
@@ -70,7 +83,10 @@ const App = () => {
       </form> */}
       <h2>Numbers</h2>
       <div>
-        <Persons persons={personsToShow} />
+        <Persons
+          persons={personsToShow}
+          handleRemovePerson={handleRemovePerson}
+        />
       </div>
     </div>
   )
@@ -98,12 +114,20 @@ const PersonForm = ({ name, number, handleNameChange, handleNumberChange, handle
   </form>
 )
 
-const Persons = ({ persons }) =>
-  persons.map((person) => <Person key={person.name} person={person} />)
+const Persons = ({ persons, handleRemovePerson}) => 
+  persons.map((person) =>
+    <Person
+      key={person.name}
+      person={person}
+      handleDelete={handleRemovePerson}/>
+  )
 
-const Person = ({ person }) => (
+const Person = ({ person, handleDelete }) => (
   <p>
     {person.name} {person.number}
+    <button type="submit" onClick={handleDelete}>
+      delete
+    </button>
   </p>
 )
 
