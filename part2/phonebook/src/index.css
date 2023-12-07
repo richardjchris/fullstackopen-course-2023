@@ -1,0 +1,14 @@
+.error {
+   color: red;
+   border: solid 2px red;
+}
+
+.success {
+   color: green;
+   border: solid 2px green;
+}
+
+.notification {
+   background-color: lightgray;
+   margin-bottom: 15px;
+}

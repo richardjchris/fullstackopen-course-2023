@@ -1,20 +1,24 @@
-import axios from 'axios'
-const baseUrl = 'http://localhost:3001/persons'
+import axios from "axios"
+const dataUrl = "http://localhost:3001/persons"
 
 const getAll = () => {
-    return axios.get(baseUrl)
+   const request = axios.get(dataUrl)
+   return request.then((response) => response.data)
 }
 
 const create = (newPerson) => {
-    return axios.post(baseUrl, newPerson)
+   const request = axios.post(dataUrl, newPerson)
+   return request.then((response) => response.data)
 }
 
 const update = (id, updatedPerson) => {
-    return axios.put(`${baseUrl}/${id}`, updatedPerson)
+   const request = axios.put(`${dataUrl}/${id}`, updatedPerson)
+   return request.then((response) => response.data)
 }
 
-export default {
-    getAll: getAll,
-    create: create,
-    update: update
+const remove = (id) => {
+   const request = axios.delete(`${dataUrl}/${id}`)
+   return request.then((response) => response.status)
 }
+
+export default { getAll, create, update, remove }
